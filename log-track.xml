@@ -1,0 +1,5 @@
+<logs>
+    <exception class="class java.lang.Exception" date="Thu Aug 21 11:37:13 BRT 2025" message="Test!">java.lang.Exception: Test!
+	at aulas.xml.Test.main(Test.java:8)
+</exception>
+</logs>
