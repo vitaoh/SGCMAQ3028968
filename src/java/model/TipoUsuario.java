@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import model.framework.DataAccessObject;
 
 public class TipoUsuario extends DataAccessObject {
@@ -57,6 +58,42 @@ public class TipoUsuario extends DataAccessObject {
     public void setModuloAtendimento(String moduloAtendimento) {
         this.moduloAtendimento = moduloAtendimento;
         addChange("modulo_atendimento", this.moduloAtendimento);
+    }
+
+    @Override
+    protected String getWhereClauseForOneEntity() {
+        return " id = " + getId();
+    }
+
+    @Override
+    protected DataAccessObject fill(ArrayList<Object> data) {
+        // segue a ordem das coluas da tabela no banco de dados
+        id = (int) data.get(0);
+        nome = (String) data.get(1);
+        moduloAdministrativo = (String) data.get(2);
+        moduloAgendamento = (String) data.get(3);
+        moduloAtendimento = (String) data.get(4);
+        return this;
+    }
+
+    @Override
+    protected TipoUsuario copy() {
+        TipoUsuario cp = new TipoUsuario();
+        
+        cp.setId(id);
+        cp.setNome(nome);
+        cp.setModuloAdministrativo(getModuloAdministrativo());
+        cp.setModuloAgendamento(getModuloAgendamento());
+        cp.setModuloAtendimento(getModuloAtendimento());
+        
+        cp.setNovelEntity(false);
+        
+        return cp;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + getId() + ", " + getNome() + ", " + getModuloAdministrativo() + ", " + getModuloAgendamento() + ", " + getModuloAtendimento() + ")";
     }
 
 }
