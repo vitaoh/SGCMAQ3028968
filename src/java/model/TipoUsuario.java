@@ -67,7 +67,7 @@ public class TipoUsuario extends DataAccessObject {
 
     @Override
     protected DataAccessObject fill(ArrayList<Object> data) {
-        // segue a ordem das coluas da tabela no banco de dados
+        // segue a ordem das colunas da tabela no banco de dados
         id = (int) data.get(0);
         nome = (String) data.get(1);
         moduloAdministrativo = (String) data.get(2);
@@ -79,15 +79,15 @@ public class TipoUsuario extends DataAccessObject {
     @Override
     protected TipoUsuario copy() {
         TipoUsuario cp = new TipoUsuario();
-        
-        cp.setId(id);
-        cp.setNome(nome);
+
+        cp.setId(getId());
+        cp.setNome(getNome());
         cp.setModuloAdministrativo(getModuloAdministrativo());
         cp.setModuloAgendamento(getModuloAgendamento());
         cp.setModuloAtendimento(getModuloAtendimento());
-        
+
         cp.setNovelEntity(false);
-        
+
         return cp;
     }
 

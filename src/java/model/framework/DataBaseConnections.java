@@ -24,31 +24,32 @@ public class DataBaseConnections {
     }
 
     public synchronized Connection getConnection() throws SQLException {
-        Connection con = null;
-
+        Connection con;
         con = DriverManager.getConnection(
                 AppConfig.getInstance().getUrl(),
                 AppConfig.getInstance().getUser(),
                 AppConfig.getInstance().getPassword());
-
         pool.add(con);
-
         return con;
     }
 
     public synchronized void closeConnection(Connection con) throws SQLException {
-        if (con != null && !con.isClosed() && pool.contains(con)) {
+        if (con != null
+                && !con.isClosed()
+                && pool.contains(con)) {
             con.close();
             pool.remove(con);
         }
     }
 
-    public synchronized void closeAllConnection() throws SQLException {
+    public synchronized void closeAllConnections() throws SQLException {
         for (Connection con : pool) {
-            if (con != null && !con.isClosed()) {
+            if (con != null
+                    && !con.isClosed()) {
                 con.close();
             }
         }
         pool.clear();
     }
+
 }
