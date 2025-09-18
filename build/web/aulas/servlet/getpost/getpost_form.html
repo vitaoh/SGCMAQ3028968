@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>GetPost Formulário</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                background-color: black;
+                color: white;
+            }
+            form {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+            label {
+                font-weight: bold;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 8px;
+                margin: 5px 0;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            input[type="checkbox"] {
+                margin-right: 5px;
+            }
+            input[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form action="http://localhost:8080/SGCMAQ3028968/aulas/servlet/getpost/getpost" method="get">
+                <h2>Formulário</h2>
+                <p>
+                    <label for="campoA">Campo A:</label>
+                    <input type="text" id="campoA" name="campoA"/> <br> <br>
+
+                    <input type="checkbox" id="opcaoA" name="opcaoA" value="opcaoA">
+                    <label for="opcaoA">Opcao A</label>  <br> <br>
+
+                    <input type="checkbox" id="opcaoB" name="opcaoB" value="opcaoB">
+                    <label for="opcaoB">Opcao B</label>  <br> <br>
+
+                    <input type="submit" name="btEnviar" value="Salvar">
+                </p>
+            </form>
+        </div>
+    </body>
+</html>
+
