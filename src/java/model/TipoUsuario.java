@@ -92,6 +92,20 @@ public class TipoUsuario extends DataAccessObject {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TipoUsuario) {
+            TipoUsuario aux = (TipoUsuario) obj;
+            if (getId() == aux.getId()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         return "(" + getId() + ", " + getNome() + ", " + getModuloAdministrativo() + ", " + getModuloAgendamento() + ", " + getModuloAtendimento() + ")";
     }

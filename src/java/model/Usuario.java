@@ -9,16 +9,16 @@ public class Usuario extends DataAccessObject {
     private int id;
 
     // Nome completo do usuário
-    private String nome;
+    private String name;
 
-    // Endereço de email do usuário
-    private String email;
+    // Cpf do usuário
+    private String cpf;
 
     // Senha do usuário
-    private String senha;
+    private String password;
 
     // Chave estrangeira para a tabela tipo_usuario
-    private int tipoUsuarioId;
+    private int typeUserId;
 
     // Construtor padrão: inicializa DAO informando a tabela mapeada
     public Usuario() {
@@ -35,40 +35,40 @@ public class Usuario extends DataAccessObject {
         addChange("id", this.id); // registra alteração para persistência automatizada
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-        addChange("nome", this.nome);
+    public void setName(String nome) {
+        this.name = nome;
+        addChange("nome", this.name);
     }
 
-    public String getEmail() {
-        return email;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-        addChange("email", this.email);
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+        addChange("cpf", this.cpf);
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-        addChange("senha", this.senha);
+    public void setPassword(String password) {
+        this.password = password;
+        addChange("senha", this.password);
     }
 
-    public int getTipoUsuarioId() {
-        return tipoUsuarioId;
+    public int getTypeUserId() {
+        return typeUserId;
     }
 
-    public void setTipoUsuarioId(int tipoUsuarioId) {
-        this.tipoUsuarioId = tipoUsuarioId;
-        addChange("tipo_usuario_id", this.tipoUsuarioId);
+    public void setTypeUserId(int typeUserId) {
+        this.typeUserId = typeUserId;
+        addChange("tipo_usuario_id", this.typeUserId);
     }
 
     // Retorna cláusula WHERE para identificar registro único
@@ -80,13 +80,13 @@ public class Usuario extends DataAccessObject {
     // Preenche campos do objeto a partir dos dados do banco, na ordem das colunas
     // Permite reuso em fill(data) e cópia em copy()
     @Override
-    protected DataAccessObject fill(ArrayList data) {
+    protected DataAccessObject fill(ArrayList<Object> data) {
         // Atenção à ordem das colunas!
         this.id = (int) data.get(0);
-        this.nome = (String) data.get(1);
-        this.email = (String) data.get(2);
-        this.senha = (String) data.get(3);
-        this.tipoUsuarioId = (int) data.get(4);
+        this.name = (String) data.get(1);
+        this.cpf = (String) data.get(2);
+        this.password = (String) data.get(3);
+        this.typeUserId = (int) data.get(4);
         return this;
     }
 
@@ -94,20 +94,34 @@ public class Usuario extends DataAccessObject {
     // Utilizado em getAllTableEntities e para garantir integridade nos objetos retornados
     @Override
     protected Usuario copy() {
-        Usuario novo = new Usuario();
-        novo.setId(this.id);
-        novo.setNome(this.nome);
-        novo.setEmail(this.email);
-        novo.setSenha(this.senha);
-        novo.setTipoUsuarioId(this.tipoUsuarioId);
-        novo.setNovelEntity(false);
-        return novo;
+        Usuario cp = new Usuario();
+        cp.setId(getId());
+        cp.setName(getName());
+        cp.setCpf(getCpf());
+        cp.setPassword(getPassword());
+        cp.setTypeUserId(getTypeUserId());
+        cp.setNovelEntity(false);
+        return cp;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Usuario) {
+            Usuario aux = (Usuario) obj;
+            if (getId() == aux.getId()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     // Representação textual do objeto Usuario, útil para depuração e logs
     @Override
     public String toString() {
-        return "(" + id + ", " + nome + ", " + email + ", " + senha + ", " + tipoUsuarioId + ")";
+        return "Usuario(" + "Id: " + id + ", Nome: " + name + ", CPF: " + cpf + ", Senha: " + password + ", Tipo Usuario: " + typeUserId + ")";
     }
 
 }

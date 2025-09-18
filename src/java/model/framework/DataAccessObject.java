@@ -21,7 +21,7 @@ public abstract class DataAccessObject {
     // inicializacao dos atributos 
     public DataAccessObject(String tableEntity) {
         setTableEntity(tableEntity);
-        dirtyFields = new HashMap<>(); 
+        dirtyFields = new HashMap<>();
 
         setNovelEntity(true);
         setChangedEntity(false);
@@ -46,7 +46,7 @@ public abstract class DataAccessObject {
             this.tableEntity = tableEntity;
         } else {
             throw new IllegalArgumentException("table must be valid");
-        }   
+        }
     }
 
     // obriga a String ser valida
@@ -103,7 +103,7 @@ public abstract class DataAccessObject {
         }
 
         // executa e fecha conexao
-        pst.execute(); 
+        pst.execute();
         pst.close();
         DataBaseConnections.getInstance().closeConnection(con);
 
@@ -140,7 +140,7 @@ public abstract class DataAccessObject {
         if (AppConfig.getInstance().isVerbose()) {
             System.out.println(pst);
         }
-        
+
         // executa 
         pst.execute();
         pst.close(); // fecha
@@ -148,7 +148,6 @@ public abstract class DataAccessObject {
         DataBaseConnections.getInstance().closeConnection(con);
 
     }
-
 
     // metodo principal: persiste no banco (faz insert se for novo, update se ja existir) e depois marca como atualizado
     public void save() throws SQLException {
@@ -212,7 +211,9 @@ public abstract class DataAccessObject {
             }
 
             fill(data);
+
             setNovelEntity(false);
+            setChangedEntity(false);
         }
 
         return result;
@@ -261,5 +262,10 @@ public abstract class DataAccessObject {
     protected abstract DataAccessObject fill(ArrayList<Object> data);
 
     protected abstract <T extends DataAccessObject> T copy();
+
+    @Override
+    public boolean equals(Object obj) {
+        throw new RuntimeException("equals must be overrided");
+    }
 
 }
