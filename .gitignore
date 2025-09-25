@@ -1,1 +1,8 @@
+# todos os arquivos de extensão .class estão sendo ignorados (não rastreados)
+*.class
+
+/build/
+
+/dist/
+
 /dist/

@@ -45,11 +45,12 @@
     </head>
     <body>
         <div>
-            <form action="http://localhost:8080/SGCMAQ3028968/aulas/servlet/getpost" method="get">
+            <!--<form action="http://localhost:8080/SGCMAQ3028968/aulas/servlet/getpost" method="get">-->
+            <form action="http://localhost:8080/SGCMAQ3028968/aulas/servlet/getpost" method="post">
                 <h2>Formulário</h2>
                 <p>
                     <label for="campoA">Campo A: </label>
-                    <input type="text" id="campoA" name="campoA" /><br/><br/>
+                    <input type="text" id="campoA" name="campoA" pattern="\d+" title="apenas dígitos"  required/><br/><br/>
 
                     <input type="checkbox" id="opcaoA" name="opcaoA" value="opcaoA"/>
                     <label for="opcaoA">Opção A</label><br/><br/>

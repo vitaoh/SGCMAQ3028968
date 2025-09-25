@@ -41,11 +41,12 @@ public class __Exemplo {
 //        us.setTypeUserId(51);
 //        
 //        us.save();
+
 //        Usuario us2 = new Usuario();
-//
 //        us2.setId(51);
-//
 //        us2.save();
+//        System.out.println(us.equals(us2));
+
 
     }
 }
