@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tipo Usuario</title>
+        <title>Tipo Usuário</title>
         <style>
             * {
                 margin: 0;
@@ -13,82 +13,113 @@
                 box-sizing: border-box;
             }
 
-            .container{
-                width: 80%;
-                margin: auto;
+            body {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                color: #ecf0f1;
+                padding: 30px;
             }
 
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: #333;
-                color: #2c3e50;
-                line-height: 1.6;
+            .container {
+                width: 95%;
+                max-width: 1100px;
+                margin: auto;
+                background: #1e272e;
                 padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             }
 
             h1 {
-                font-size: 2.5rem;
-                color: #fff;
-                margin-bottom: 20px;
+                font-size: 2.2rem;
                 text-align: center;
+                margin-bottom: 20px;
+                color: #f1c40f;
+                letter-spacing: 1px;
             }
 
             table {
                 width: 100%;
-                max-width: 100%;
                 border-collapse: collapse;
-                margin: 20px 0;
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                background: #fff;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            thead {
+                background: #3498db;
+                color: #fff;
             }
 
             th, td {
-                padding: 12px;
+                padding: 14px 12px;
                 text-align: center;
-                border: 1px solid #ddd;
-            }
-
-            th {
-                background-color: #3498db;
-                color: white;
+                font-size: 0.95rem;
+                border-bottom: 1px solid #ddd;
             }
 
             tr:nth-child(even) {
-                background-color: #f2f2f2;
+                background: #f9f9f9;
             }
 
             tr:hover {
-                background-color: #ecf0f1;
+                background: #ecf0f1;
+                transition: 0.3s ease-in-out;
             }
 
-            a {
+            .btn {
                 display: inline-block;
-                background-color: #3498db;
-                color: #fff;
-                padding: 10px 20px;
+                padding: 8px 14px;
+                margin: 2px;
+                border-radius: 6px;
                 text-decoration: none;
-                border-radius: 4px;
-                margin-top: 20px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: 0.2s;
+            }
+
+            .btn-edit {
+                background: #27ae60;
+                color: #fff;
+            }
+
+            .btn-edit:hover {
+                background: #219150;
+            }
+
+            .btn-delete {
+                background: #e74c3c;
+                color: #fff;
+            }
+
+            .btn-delete:hover {
+                background: #c0392b;
+            }
+
+            .btn-add {
+                background: #2980b9;
+                color: #fff;
+                display: block;
                 text-align: center;
+                width: fit-content;
+                margin: 20px auto 0;
             }
 
-            a:hover {
-                background-color: #2980b9;
+            .btn-add:hover {
+                background: #21618c;
             }
 
-            /* Responsividade */
             @media (max-width: 768px) {
                 table {
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
+                }
+
+                th, td {
+                    padding: 10px 8px;
                 }
 
                 h1 {
-                    font-size: 2rem;
-                }
-
-                a {
-                    padding: 8px 16px;
+                    font-size: 1.6rem;
                 }
             }
         </style>
