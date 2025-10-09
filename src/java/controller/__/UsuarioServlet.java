@@ -47,7 +47,7 @@ public class UsuarioServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
-        int tipoUsuario = Integer.valueOf(request.getParameter("tipoUsuario"));
+        int tipoUsuarioId = Integer.valueOf( request.getParameter("tipo_usuario_id") );
         
         try {
             // Java Bean
@@ -60,7 +60,7 @@ public class UsuarioServlet extends HttpServlet {
             us.setNome(nome);
             us.setSenha(senha);
             us.setCpf(cpf);
-            us.setTipoUsuarioId(tipoUsuario);
+            us.setTipoUsuarioId(tipoUsuarioId);
 
             us.save();
         } catch (Exception ex) {
