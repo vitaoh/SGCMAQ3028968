@@ -1,51 +1,52 @@
 package model;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import model.framework.DataAccessObject;
 
 public class Usuario extends DataAccessObject {
 
-    // Identificador único do usuário (chave primária da tabela)
-    private int id;
-
-    // Nome completo do usuário
-    private String name;
-
-    // Cpf do usuário
+    // Atributos que fazem relação das colunas da tabela 'usuarios' no banco
+    private int id; // primary key - id do usuario
+    private String nome;
     private String cpf;
+    private String senha;
+    private int tipoUsuarioId; // chave estrangeira para tipo_usuario
 
-    // Senha do usuário
-    private String password;
-
-    // Chave estrangeira para a tabela tipo_usuario
-    private int typeUserId;
-
-    // Construtor padrão: inicializa DAO informando a tabela mapeada
     public Usuario() {
-        super("sgcm_bd.usuarios");
+        super("usuarios"); // nome da tabela
     }
 
-    // Getters e setters, cada setter registra mudança no DAO (addChange)
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-        addChange("id", this.id); // registra alteração para persistência automatizada
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String nome) {
-        this.name = nome;
-        addChange("nome", this.name);
+    public String getNome() {
+        return nome;
     }
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public int getTipoUsuarioId() {
+        return tipoUsuarioId;
+    }
+
+    // Setters, para alterar os atributos e com o addChange() ja muda no dirtyFields
+    public void setId(int id) {
+        this.id = id;
+        addChange("id", this.id);
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+        addChange("nome", this.nome);
     }
 
     public void setCpf(String cpf) {
@@ -53,54 +54,61 @@ public class Usuario extends DataAccessObject {
         addChange("cpf", this.cpf);
     }
 
-    public String getPassword() {
-        return password;
+    public void setSenha(String senha) throws Exception {
+        if (senha == null) {
+            if (this.senha != null) {
+                this.senha = senha;
+                addChange("senha", this.senha);
+            }
+        } else {
+            if (senha.equals(this.senha) == false) {
+                String senhaSal = getId() + senha + getId() / 2; // para "criptocrafar"
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                String hash = new BigInteger(1, md.digest(senhaSal.getBytes("UTF-8"))).toString(16);
+
+                this.senha = hash;
+                addChange("senha", this.senha);
+            }
+        }
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-        addChange("senha", this.password);
+    public void setTipoUsuarioId(int tipoUsuarioId) {
+        if (this.tipoUsuarioId != tipoUsuarioId) {
+            this.tipoUsuarioId = tipoUsuarioId;
+            addChange("tipo_usuario_id", this.tipoUsuarioId);
+        }
     }
 
-    public int getTypeUserId() {
-        return typeUserId;
-    }
-
-    public void setTypeUserId(int typeUserId) {
-        this.typeUserId = typeUserId;
-        addChange("tipo_usuario_id", this.typeUserId);
-    }
-
-    // Retorna cláusula WHERE para identificar registro único
     @Override
     protected String getWhereClauseForOneEntity() {
-        return "id = " + this.id;
+        return " id = " + getId();
     }
 
-    // Preenche campos do objeto a partir dos dados do banco, na ordem das colunas
-    // Permite reuso em fill(data) e cópia em copy()
+    // preenche o objeto com os dados do banco
     @Override
     protected DataAccessObject fill(ArrayList<Object> data) {
-        // Atenção à ordem das colunas!
-        this.id = (int) data.get(0);
-        this.name = (String) data.get(1);
-        this.cpf = (String) data.get(2);
-        this.password = (String) data.get(3);
-        this.typeUserId = (int) data.get(4);
+        // segue a ordem das colunas da tabela usuarios (tem que ver certinho se esta desta forma)
+        id = (int) data.get(0); // coluna 1: ID
+        nome = (String) data.get(1); // coluna 2: Nome
+        cpf = (String) data.get(2); // coluna 3: CPF
+        senha = (String) data.get(3); // coluna 4: Senha
+        tipoUsuarioId = (int) data.get(4); // coluna 5: TipoUsuario
+
         return this;
     }
 
-    // Cria nova instância de Usuario com os mesmos dados, marcando-a como já existente
-    // Utilizado em getAllTableEntities e para garantir integridade nos objetos retornados
     @Override
     protected Usuario copy() {
         Usuario cp = new Usuario();
+
         cp.setId(getId());
-        cp.setName(getName());
+        cp.setNome(getNome());
+        cp.senha = getSenha();
         cp.setCpf(getCpf());
-        cp.setPassword(getPassword());
-        cp.setTypeUserId(getTypeUserId());
-        cp.setNovelEntity(false);
+        cp.setTipoUsuarioId(getTipoUsuarioId());
+
+        cp.setNovelEntity(false); // copiou um existente
+
         return cp;
     }
 
@@ -118,10 +126,8 @@ public class Usuario extends DataAccessObject {
         }
     }
 
-    // Representação textual do objeto Usuario, útil para depuração e logs
     @Override
     public String toString() {
-        return "Usuario(" + "Id: " + id + ", Nome: " + name + ", CPF: " + cpf + ", Senha: " + password + ", Tipo Usuario: " + typeUserId + ")";
+        return "(" + getId() + ", " + getNome() + ", " + getCpf() + ", " + getSenha() + ", tipoUsuarioId=" + getTipoUsuarioId() + ")";
     }
-
 }

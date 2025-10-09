@@ -1,4 +1,4 @@
-package controller;
+package controller.__;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import logtrack.ExceptionLogTrack;
 import model.TipoUsuario;
 
-@WebServlet(name = "TipoUsuarioServlet", urlPatterns = {"/home/tipousuario"})
+@WebServlet(name = "TipoUsuarioServlet", urlPatterns = {"/home/app/tipousuario"})
 public class TipoUsuarioServlet extends HttpServlet {
 
     @Override
@@ -32,7 +32,7 @@ public class TipoUsuarioServlet extends HttpServlet {
             }
         }
 
-        response.sendRedirect(request.getContextPath() + "/home/tipousuario.jsp");
+        response.sendRedirect(request.getContextPath() + "/home/app/tipousuario.jsp");
     }
 
     @Override
@@ -80,6 +80,6 @@ public class TipoUsuarioServlet extends HttpServlet {
             ExceptionLogTrack.getInstance().addLog(ex);
         }
 
-        response.sendRedirect(request.getContextPath() + "/home/tipousuario.jsp");
+        response.sendRedirect(request.getContextPath() + "/home/app/tipousuario.jsp");
     }
 }
