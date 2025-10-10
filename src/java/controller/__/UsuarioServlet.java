@@ -17,22 +17,21 @@ public class UsuarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // obter a listagem de registros da tabela tipo_usuario e deletar um registro de tipo_usuario
-        
+
         String action = request.getParameter("action");
         if (action != null && action.equals("delete")) {
             int id = Integer.valueOf(request.getParameter("id"));
-            
 
             Usuario us = new Usuario();
             us.setId(id);
-            
+
             try {
                 us.delete();
             } catch (Exception ex) {
                 ExceptionLogTrack.getInstance().addLog(ex);
             }
         }
-        
+
         response.sendRedirect(request.getContextPath() + "/home/app/usuario.jsp");
     }
 
@@ -40,33 +39,35 @@ public class UsuarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // criar e alterar registros da tabela usuario
-        
+
         String action = request.getParameter("action");
-        
+
         int id = Integer.valueOf(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
-        int tipoUsuarioId = Integer.valueOf( request.getParameter("tipo_usuario_id") );
-        
+        int tipoUsuario = Integer.valueOf(request.getParameter("tipoUsuario"));
+
         try {
             // Java Bean
             Usuario us = new Usuario();
 
             us.setId(id); // chave primária
 
-            if (action.equals("update")) us.load();
+            if (action.equals("update")) {
+                us.load();
+            }
 
             us.setNome(nome);
             us.setSenha(senha);
             us.setCpf(cpf);
-            us.setTipoUsuarioId(tipoUsuarioId);
+            us.setTipoUsuarioId(tipoUsuario);
 
             us.save();
         } catch (Exception ex) {
             ExceptionLogTrack.getInstance().addLog(ex);
         }
-        
+
         response.sendRedirect(request.getContextPath() + "/home/app/usuario.jsp");
     }
 }

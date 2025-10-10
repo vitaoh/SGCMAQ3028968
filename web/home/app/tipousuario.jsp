@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tipo Usuário</title>
-        <link rel="stylesheet" href="../css/style.css">    
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     </head>
     <body>
         <% ArrayList<TipoUsuario> dados = new TipoUsuario().getAllTableEntities(); %>
@@ -32,7 +32,7 @@
                         <td><%= tp.getModuloAgendamento()%></td>
                         <td><%= tp.getModuloAtendimento()%></td>
                         <td> 
-                            <a href="<%= request.getContextPath()%>/home/tipousuario_form.jsp?action=update&id=<%= tp.getId()%>">Alterar</a>
+                            <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=update&id=<%= tp.getId()%>">Alterar</a>
                             <a href="<%= request.getContextPath()%>/home?action=delete&id=<%= tp.getId()%>&task=tipousuario" onclick="return confirm('Deseja excluir TipoUsuario <%= tp.getId()%> (<%= tp.getNome()%>) ?')" >Excluir</a>
                         </td>
                     </tr>
@@ -40,6 +40,6 @@
                 </tbody>
             </table>
         </div>
-        <a href="<%= request.getContextPath()%>/home/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
+        <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
     </body>
 </html>

@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuario</title>
     </head>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <body>
         <%
             Usuario us = null;
@@ -25,7 +25,7 @@
         %>
         <div class="form-container">
             <h1>Usuario</h1>
-            <form action="<%= request.getContextPath()%>/home?action=<%= action%>&task=usuarios" method="post">
+            <form action="<%= request.getContextPath()%>/home?action=<%= action%>&task=usuario" method="post">
 
                 <label for="id">ID:</label>
                 <input type="text" 
