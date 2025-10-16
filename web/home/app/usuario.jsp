@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <body>
         <% ArrayList<Usuario> dados = new Usuario().getAllTableEntities(); %>
-        <h1>Usuario</h1>
         <div class="container">
+            <h1>Usuario</h1>
             <table border="1">
                 <thead>
                     <tr>
@@ -19,7 +19,8 @@
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>Tipo Usuario</th>
-                        <th>Ações</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,8 @@
                         <td><%= us.getTipoUsuarioId()%></td>
                         <td> 
                             <a href="<%= request.getContextPath()%>/home/app/usuario_form.jsp?action=update&id=<%= us.getId()%>">Alterar</a>
+                        </td>
+                        <td> 
                             <a href="<%= request.getContextPath()%>/home?action=delete&id=<%= us.getId()%>&task=usuario" onclick="return confirm('Deseja excluir Usuario <%= us.getId()%> (<%= us.getNome()%>) ?')" >Excluir</a>
                         </td>
                     </tr>
@@ -39,5 +42,12 @@
             </table>
         </div>
         <a href="<%= request.getContextPath()%>/home/app/usuario_form.jsp?action=create" class="centralizado">Adicionar</a>
+        <div class="container">
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/home/login.jsp">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/home/app/tipousuario.jsp">Tipo Usuário</a></li>
+                <li><a href="${pageContext.request.contextPath}/home/app/usuario.jsp">Usuários</a></li>
+            </ul>
+        </div>
     </body>
 </html>

@@ -3,6 +3,10 @@
     <welcome-file-list>
         <welcome-file>/home/login.jsp</welcome-file>
     </welcome-file-list>
+    <session-config>
+        <!-- em minutos -->
+        <session-timeout>2880</session-timeout>
+    </session-config>
     <servlet>
         <servlet-name>GetPost</servlet-name>
         <servlet-class>aulas.servlet.getpost.GetPost</servlet-class>
