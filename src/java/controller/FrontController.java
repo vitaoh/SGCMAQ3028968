@@ -109,12 +109,12 @@ public class FrontController extends HttpServlet {
 
         HttpSession sessao = request.getSession(false);
         if (sessao != null) {
-//            sessao.removeAttribute("usuario");
-//            sessao.removeAttribute("tipo_usuario");
+            sessao.removeAttribute("usuario");
+            sessao.removeAttribute("tipo_usuario");
 
             sessao.invalidate();
         }
-        response.sendRedirect("home/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/home/login.jsp");
     }
 
     private void doPostTipoUsuario(HttpServletRequest request, HttpServletResponse response)
@@ -210,7 +210,9 @@ public class FrontController extends HttpServlet {
             HttpSession sessao = request.getSession(false);
 
             if (sessao != null) {
-                // se a sessão já existir
+                sessao.removeAttribute("usuario");
+                sessao.removeAttribute("tipo_usuario");
+
                 sessao.invalidate();
             }
 
@@ -231,9 +233,11 @@ public class FrontController extends HttpServlet {
             cookie.setMaxAge(60 * 10); // segundos
             response.addCookie(cookie);
 
-            response.sendRedirect("home/app/menu.jsp");
+            response.sendRedirect(request.getContextPath() + "/home/app/menu.jsp");
 
         } else {
+
+            // faz com que o cliente acesse o recurso
             request.setAttribute("msg", "id e/ou senha incorreta(s)");
             request.getRequestDispatcher("/home/login.jsp").forward(request, response);
         }
@@ -243,6 +247,5 @@ public class FrontController extends HttpServlet {
     private void doDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect(request.getContextPath() + "/home/login.jsp");
-//        response.sendRedirect("home/login.jsp");
     }
 }

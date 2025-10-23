@@ -44,12 +44,5 @@
             </table>
         </div>
         <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
-        <div class="container">
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/home/login.jsp">Login</a></li>
-                <li><a href="${pageContext.request.contextPath}/home/app/tipousuario.jsp">Tipo Usuário</a></li>
-                <li><a href="${pageContext.request.contextPath}/home/app/usuario.jsp">Usuários</a></li>
-            </ul>
-        </div>
     </body>
 </html>

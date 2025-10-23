@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     </head>
     <body>
-        <%@ include file="/home/app/modulos.jsp" %>
+        <div class="container">
+            <%@ include file="/home/app/modulos.jsp" %>
+        </div>
     </body>
 </html>

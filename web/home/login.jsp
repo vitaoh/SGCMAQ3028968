@@ -20,16 +20,21 @@
 
         <%
             HttpSession sessao = request.getSession(false);
-            if (sessao != null) {
-                response.sendRedirect("home/app/menu.jsp");
+            if ((sessao != null
+                    && (sessao.getAttribute("usuario") != null))
+                    && (sessao.getAttribute("tipo_usuario") != null)) {
+                response.sendRedirect(request.getContextPath() + "/home/app/menu.jsp");
             }
         %>
 
         <%
             int id = -1;
-            for (Cookie c : request.getCookies()) {
-                if (c.getName().equals("id")) {
-                    id = Integer.parseInt(c.getValue());
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie c : cookies) {
+                    if (c.getName().equals("id")) {
+                        id = Integer.parseInt(c.getValue());
+                    }
                 }
             }
         %>
@@ -37,14 +42,14 @@
         <div class="container">
             <div class="form-container">
                 <h1>Login</h1>
-                <form action="<%= request.getContextPath() %>/home?task=login" method="post">
+                <form action="<%= request.getContextPath()%>/home?task=login" method="post">
                     <label for="id">ID:</label>
                     <input type="text" 
                            id="id" 
                            name="id"
                            pattern="\d+" 
                            title="apenas dígitos" 
-                           value="<%= id != -1 ? id : "" %>"
+                           value="<%= id != -1 ? id : ""%>"
                            required>
                     <br/> 
                     <label for="id">Senha:</label>
