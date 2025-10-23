@@ -11,6 +11,6 @@
         <a href="${pageContext.request.contextPath}/home/app/usuario.jsp">Usuários</a>
     </li>
     <li>
-        <a href="${pageContext.request.contextPath}/home?task=logout">Logout</a>
+        <a href="${pageContext.request.contextPath}/home?task=logout">Logout <%= session.getAttribute("usuario") %></a>
     </li>
 </ul>
