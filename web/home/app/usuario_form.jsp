@@ -71,5 +71,8 @@
                 <input type="submit" name="Salvar" value="Salvar" class="centralizado">
             </form>
         </div>
-    </body>
+    <li>
+        <a href="${pageContext.request.contextPath}/home/app/usuario.jsp" class="centralizado">Voltar</a>
+    </li>
+</body>
 </html>

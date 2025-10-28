@@ -42,5 +42,10 @@
             </table>
         </div>
         <a href="<%= request.getContextPath()%>/home/app/usuario_form.jsp?action=create" class="centralizado">Adicionar</a>
+        <ul>
+            <li>
+                <a href="${pageContext.request.contextPath}/home/app/menu.jsp" class="centralizado">Menu</a>
+            </li>
+        </ul>
     </body>
 </html>

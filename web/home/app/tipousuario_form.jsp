@@ -56,6 +56,9 @@
                 </div>
                 <button type="submit" class="centralizado">Salvar</button>
             </form>
-        </div>
-    </body>
+        </div>            
+    <li>
+        <a href="${pageContext.request.contextPath}/home/app/tipousuario.jsp" class="centralizado">Voltar</a>
+    </li>
+</body>
 </html>
