@@ -8,9 +8,11 @@
     </head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <body>
-        <div class="container">
-            <%@ include file="/home/app/modulos.jsp" %>
-        </div>
+        <!--        
+            <div class="container">
+                <%--<%@ include file="/home/app/modulos.jsp" %>--%>
+            </div>
+        -->
         <%
             TipoUsuario tp = null;
             String action = request.getParameter("action");

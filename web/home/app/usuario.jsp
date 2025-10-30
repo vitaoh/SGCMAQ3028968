@@ -9,9 +9,11 @@
     </head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <body>
-        <div class="container">
-            <%@ include file="/home/app/modulos.jsp" %>
-        </div>
+        <!--        
+            <div class="container">
+                <%--<%@ include file="/home/app/modulos.jsp" %>--%>
+            </div>
+        -->
         <% ArrayList<Usuario> dados = new Usuario().getAllTableEntities(); %>
         <div class="container">
             <h1>Usuario</h1>
@@ -21,6 +23,7 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>CPF</th>
+                        <th>Endereço</th>
                         <th>Tipo Usuario</th>
                         <th></th>
                         <th></th>
@@ -32,6 +35,7 @@
                         <td><%= us.getId()%></td>
                         <td><%= us.getNome()%></td>
                         <td><%= us.getCpf()%></td>
+                        <td><%= us.getEndereco()%></td> <!--justar aqqqqqqqqqqqqqqqqqqqqqq-->
                         <td><%= us.getTipoUsuarioId()%></td>
                         <td> 
                             <a href="<%= request.getContextPath()%>/home/app/usuario_form.jsp?action=update&id=<%= us.getId()%>">Alterar</a>

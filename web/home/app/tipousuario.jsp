@@ -9,9 +9,11 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     </head>
     <body>
-        <div class="container">
-            <%@ include file="/home/app/modulos.jsp" %>
-        </div>
+        <!--        
+            <div class="container">
+                <%--<%@ include file="/home/app/modulos.jsp" %>--%>
+            </div>
+        -->
         <% ArrayList<TipoUsuario> dados = new TipoUsuario().getAllTableEntities(); %>
         <div class="container">
             <h1>Tipo Usuario</h1>

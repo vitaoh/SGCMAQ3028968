@@ -167,6 +167,7 @@ public class FrontController extends HttpServlet {
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
+        String endereco = request.getParameter("endereco");
         int tipoUsuarioId = Integer.valueOf(request.getParameter("tipoUsuario"));
 
         // Java Bean
@@ -181,6 +182,7 @@ public class FrontController extends HttpServlet {
         us.setNome(nome);
         us.setSenha(senha);
         us.setCpf(cpf);
+        us.setEndereco(endereco);
         us.setTipoUsuarioId(tipoUsuarioId);
 
         us.save();

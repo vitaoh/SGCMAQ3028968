@@ -8,9 +8,11 @@
     </head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <body>
-        <div class="container">
-            <%@ include file="/home/app/modulos.jsp" %>
-        </div>
+        <!--        
+            <div class="container">
+                <%--<%@ include file="/home/app/modulos.jsp" %>--%>
+            </div>
+        -->
         <%
             Usuario us = null;
             String action = request.getParameter("action");
@@ -44,6 +46,26 @@
                        id="nome" 
                        name="nome" 
                        value="<%= ((us != null) && (us.getNome() != null)) ? us.getNome() : ""%>">
+                <br>
+
+                <label for="cep">CEP:</label>
+                <input type="text" 
+                       id="cep" 
+                       name="cep"
+                       pattern="\d{5}-d\{3}"
+                       title="DDDDD-DDD">
+                <input type="button"
+                       id="buscar_por_cep"
+                       name="buscar_por_cep"
+                       value="Buscar endereço">
+                <br>
+
+                <label for="endereco">Endereço:</label>
+                <textarea id="endereco" 
+                          name="endereco" 
+                          rows="3" 
+                          cols="40" 
+                          required><%= (us != null && us.getEndereco() != null) ? us.getEndereco() : ""%></textarea>
                 <br>
 
                 <label for="senha">Senha:</label>

@@ -11,6 +11,7 @@ public class Usuario extends DataAccessObject {
     private int id; // primary key - id do usuario
     private String nome;
     private String cpf;
+    private String endereco;
     private String senha;
     private int tipoUsuarioId; // chave estrangeira para tipo_usuario
 
@@ -28,6 +29,10 @@ public class Usuario extends DataAccessObject {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getEndereco() {
+        return endereco;
     }
 
     public String getSenha() {
@@ -52,6 +57,11 @@ public class Usuario extends DataAccessObject {
     public void setCpf(String cpf) {
         this.cpf = cpf;
         addChange("cpf", this.cpf);
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+        addChange("endereco", this.endereco);
     }
 
     public void setSenha(String senha) throws Exception {
@@ -91,8 +101,9 @@ public class Usuario extends DataAccessObject {
         id = (int) data.get(0); // coluna 1: ID
         nome = (String) data.get(1); // coluna 2: Nome
         cpf = (String) data.get(2); // coluna 3: CPF
-        senha = (String) data.get(3); // coluna 4: Senha
-        tipoUsuarioId = (int) data.get(4); // coluna 5: TipoUsuario
+        endereco = (String) data.get(3); // coluna 4: Endereço
+        senha = (String) data.get(4); // coluna 4: Senha
+        tipoUsuarioId = (int) data.get(5); // coluna 5: TipoUsuario
 
         return this;
     }
@@ -105,6 +116,7 @@ public class Usuario extends DataAccessObject {
         cp.setNome(getNome());
         cp.senha = getSenha();
         cp.setCpf(getCpf());
+        cp.setEndereco(getEndereco());
         cp.setTipoUsuarioId(getTipoUsuarioId());
 
         cp.setNovelEntity(false); // copiou um existente
@@ -128,6 +140,6 @@ public class Usuario extends DataAccessObject {
 
     @Override
     public String toString() {
-        return "(" + getId() + ", " + getNome() + ", " + getCpf() + ", " + getSenha() + ", tipoUsuarioId=" + getTipoUsuarioId() + ")";
+        return "(" + getId() + ", " + getNome() + ", " + getCpf() + ", " + getEndereco() + ", " + getSenha() + ", tipoUsuarioId=" + getTipoUsuarioId() + ")";
     }
 }
