@@ -4,6 +4,7 @@
         <welcome-file>/home/login.jsp</welcome-file>
     </welcome-file-list>
     <session-config>
+        <!-- minutos -->
         <session-timeout>2880</session-timeout>
     </session-config>
     <listener>
@@ -16,6 +17,14 @@
     <filter-mapping>
         <filter-name>AutenticadorApp</filter-name>
         <url-pattern>/home/app/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>AutenticadorAdm</filter-name>
+        <filter-class>controller.AutenticadorAdm</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutenticadorAdm</filter-name>
+        <url-pattern>/home/app/adm/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>GetPost</servlet-name>
