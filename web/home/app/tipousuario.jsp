@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     </head>
     <body>
+        <div class="container">
+            <%@ include file="/home/app/modulos.jsp" %>
+        </div>
         <% ArrayList<TipoUsuario> dados = new TipoUsuario().getAllTableEntities(); %>
         <div class="container">
             <h1>Tipo Usuario</h1>
@@ -45,11 +48,11 @@
         </div>
         <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
         <!--<div class="container">-->
-            <ul>
-                <li>
-                    <a href="${pageContext.request.contextPath}/home/app/menu.jsp" class="centralizado">Menu</a>
-                </li>
-            </ul>
+        <ul>
+            <li>
+                <a href="${pageContext.request.contextPath}/home/app/menu.jsp" class="centralizado">Menu</a>
+            </li>
+        </ul>
         <!--</div>-->
     </body>
 </html>

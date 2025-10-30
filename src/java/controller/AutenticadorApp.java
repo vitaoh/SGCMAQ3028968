@@ -20,7 +20,9 @@ public class AutenticadorApp implements Filter {
 
         HttpSession sessao = httpServletRequest.getSession(false);
 
-        if ((sessao == null) || (sessao.getAttribute("usuario") == null) || (sessao.getAttribute("tipo_usuario") == null)) {
+        if ((sessao == null) 
+                || (sessao.getAttribute("usuario") == null) 
+                || (sessao.getAttribute("tipo_usuario") == null)) {
             httpServletRequest.setAttribute("msg", "Por favor, faça o login!");
             httpServletRequest.getRequestDispatcher("/home/login.jsp").forward(request, response);
         } else {
