@@ -38,7 +38,7 @@
                         <td><%= tp.getModuloAgendamento()%></td>
                         <td><%= tp.getModuloAtendimento()%></td>
                         <td> 
-                            <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=update&id=<%= tp.getId()%>">Alterar</a>
+                            <a href="<%= request.getContextPath()%>/home/app/adm/tipousuario_form.jsp?action=update&id=<%= tp.getId()%>">Alterar</a>
                         </td>
                         <td> 
                             <a href="<%= request.getContextPath()%>/home?action=delete&id=<%= tp.getId()%>&task=tipousuario" onclick="return confirm('Deseja excluir TipoUsuario <%= tp.getId()%> (<%= tp.getNome()%>) ?')" >Excluir</a>
@@ -48,7 +48,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="<%= request.getContextPath()%>/home/app/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
+        <a href="<%= request.getContextPath()%>/home/app/adm/tipousuario_form.jsp?action=create" class="centralizado">Adicionar</a>
         <!--<div class="container">-->
         <ul>
             <li>

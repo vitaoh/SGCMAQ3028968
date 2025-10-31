@@ -97,7 +97,7 @@
             </form>
         </div>
     <li>
-        <a href="${pageContext.request.contextPath}/home/app/usuario.jsp" class="centralizado">Voltar</a>
+        <a href="${pageContext.request.contextPath}/home/app/adm/usuario.jsp" class="centralizado">Voltar</a>
     </li>
 </body>
 </html>

@@ -18,10 +18,10 @@
 
         <% if (tipoUsuarioLogado.getModuloAdministrativo().equals("S")) { %>
             <li>
-                <a href="${pageContext.request.contextPath}/home/app/tipousuario.jsp">Tipo Usuário</a>
+                <a href="${pageContext.request.contextPath}/home/app/adm/tipousuario.jsp">Tipo Usuário</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/home/app/usuario.jsp">Usuários</a>
+                <a href="${pageContext.request.contextPath}/home/app/adm/usuario.jsp">Usuários</a>
             </li>
         <% } %>
 

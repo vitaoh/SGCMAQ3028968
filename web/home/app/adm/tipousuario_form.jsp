@@ -63,7 +63,7 @@
             </form>
         </div>            
     <li>
-        <a href="${pageContext.request.contextPath}/home/app/tipousuario.jsp" class="centralizado">Voltar</a>
+        <a href="${pageContext.request.contextPath}/home/app/adm/tipousuario.jsp" class="centralizado">Voltar</a>
     </li>
 </body>
 </html>
