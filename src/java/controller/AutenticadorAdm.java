@@ -17,21 +17,15 @@ public class AutenticadorAdm implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         HttpSession sessao = httpServletRequest.getSession(false);
 
-        if (sessao == null) {
-            httpServletRequest.setAttribute("msg", "Por favor, faça o login!");
-            httpServletRequest.getRequestDispatcher("/home/login.jsp").forward(request, response);
-            return; 
-        }
-
-        String usuario = (String) sessao.getAttribute("usuario");
         TipoUsuario tipoUsuario = (TipoUsuario) sessao.getAttribute("tipo_usuario");
 
-        if (tipoUsuario == null || !tipoUsuario.getModuloAdministrativo().equals("S")) {
+        if (tipoUsuario == null 
+                || !tipoUsuario.getModuloAdministrativo().equals("S")) {
             httpServletRequest.setAttribute("msg", "Acesso negado! Você não tem permissão para acessar esta área.");
-            httpServletRequest.getRequestDispatcher("/home/app/menu.jsp").forward(request, response);
-            return;
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/home/app/menu.jsp");
         } else {
             chain.doFilter(request, response);
         }
