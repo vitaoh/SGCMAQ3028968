@@ -179,6 +179,6 @@ public class Usuario extends DataAccessObject {
 
     @Override
     public String toString() {
-        return "(" + getId() + ", " + getNome() + ", " + getNascimento() + ", " + getCpf() + ", " + getSenha() + getEndereco() + ", tipoUsuarioId=" + getTipoUsuarioId() + ", ConvenioId=" + getConvenioId() + ")";
+        return "(" + getId() + ", " + getNome() + ", " + getNascimento() + ", " + getCpf() + ", " + getSenha() + getEndereco() + ", tipoUsuarioId = " + getTipoUsuarioId() + ", ConvenioId = " + getConvenioId() + ")";
     }
 }
