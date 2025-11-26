@@ -5,7 +5,6 @@ import jakarta.servlet.ServletContextListener;
 import logtrack.ExceptionLogTrack;
 import model.framework.DataBaseConnections;
 
-
 public class ContextListener implements ServletContextListener {
 
     @Override

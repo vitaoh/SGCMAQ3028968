@@ -10,8 +10,8 @@
     <body>
         <!--        
             <div class="container">
-                <%--<%@ include file="/home/app/modulos.jsp" %>--%>
-            </div>
+        <%--<%@ include file="/home/app/modulos.jsp" %>--%>
+    </div>
         -->
         <%
             Usuario us = null;
@@ -29,7 +29,7 @@
             }
         %>
         <div class="form-container">
-            <h1>Usuario</h1>
+            <h1><%= action.equals("create") ? "Adicionar" : "Editar"%> Usuario</h1>
             <form action="<%= request.getContextPath()%>/home?action=<%= action%>&task=usuario" method="post">
 
                 <label for="id">ID:</label>
@@ -92,6 +92,15 @@
                        title="apenas dígitos" 
                        value="<%= (us != null) ? us.getTipoUsuarioId() : ""%>" <%= (us != null) ? "readonly" : ""%> required>
                 <br>
+
+                <label for="convenio">Convênio:</label>
+                <input type="text" 
+                       id="convenio" 
+                       name ="convenio" 
+                       pattern="\d+" 
+                       title="apenas dígitos"
+                       value="<%= ((us != null) && (us.getConvenioId() != 0)) ? us.getConvenioId() : ""%>">
+                <br/>
 
                 <input type="submit" name="Salvar" value="Salvar" class="centralizado">
             </form>

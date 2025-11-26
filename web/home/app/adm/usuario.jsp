@@ -22,9 +22,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Nascimento</th>
                         <th>CPF</th>
                         <th>Endereço</th>
                         <th>Tipo Usuario</th>
+                        <th>Convenio</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -32,11 +34,13 @@
                 <tbody>
                     <% for (Usuario us : dados) {%>
                     <tr>
-                        <td><%= us.getId()%></td>
-                        <td><%= us.getNome()%></td>
+                        <td><%= us.getId() %></td>
+                        <td><%= us.getNome() %></td>
+                        <td><%= us.getNascimento() != null ? us.getNascimento() : "-" %></td>
                         <td><%= us.getCpf() != null ? us.getCpf() : "-" %></td>
-                        <td><%= us.getEndereco()%></td>
-                        <td><%= us.getTipoUsuarioId()%></td>
+                        <td><%= us.getEndereco() %></td>
+                        <td><%= us.getTipoUsuarioId() %></td>
+                        <td><%= us.getConvenioId() %></td>
                         <td> 
                             <a href="<%= request.getContextPath()%>/home/app/adm/usuario_form.jsp?action=update&id=<%= us.getId()%>">Alterar</a>
                         </td>

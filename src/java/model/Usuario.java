@@ -3,6 +3,7 @@ package model;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Date;
 import model.framework.DataAccessObject;
 
 public class Usuario extends DataAccessObject {
@@ -10,10 +11,12 @@ public class Usuario extends DataAccessObject {
     // Atributos que fazem relação das colunas da tabela 'usuarios' no banco
     private int id; // primary key - id do usuario
     private String nome;
+    private String nascimento;
     private String cpf;
-    private String endereco;
     private String senha;
+    private String endereco;
     private int tipoUsuarioId; // chave estrangeira para tipo_usuario
+    private int convenioId; // chave estrangeira para convenios
 
     public Usuario() {
         super("usuarios"); // nome da tabela
@@ -25,6 +28,10 @@ public class Usuario extends DataAccessObject {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getNascimento() {
+        return nascimento;
     }
 
     public String getCpf() {
@@ -43,6 +50,10 @@ public class Usuario extends DataAccessObject {
         return tipoUsuarioId;
     }
 
+    public int getConvenioId() {
+        return convenioId;
+    }
+
     // Setters, para alterar os atributos e com o addChange() ja muda no dirtyFields
     public void setId(int id) {
         this.id = id;
@@ -52,6 +63,11 @@ public class Usuario extends DataAccessObject {
     public void setNome(String nome) {
         this.nome = nome;
         addChange("nome", this.nome);
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
+        addChange("nascimento", this.nascimento);
     }
 
     public void setCpf(String cpf) {
@@ -89,6 +105,16 @@ public class Usuario extends DataAccessObject {
         }
     }
 
+    public void setConvenioId(int convenioId) {
+        this.convenioId = convenioId;
+        if( this.convenioId == 0 ) { 
+            addChange("convenios_id", null);
+        } else {
+            addChange("convenios_id", this.convenioId);
+        }
+    }
+
+
     @Override
     protected String getWhereClauseForOneEntity() {
         return " id = " + getId();
@@ -100,10 +126,20 @@ public class Usuario extends DataAccessObject {
         // segue a ordem das colunas da tabela usuarios (tem que ver certinho se esta desta forma)
         id = (int) data.get(0); // coluna 1: ID
         nome = (String) data.get(1); // coluna 2: Nome
-        cpf = (String) data.get(2); // coluna 3: CPF
-        endereco = (String) data.get(3); // coluna 4: Endereço
-        senha = (String) data.get(4); // coluna 4: Senha
-        tipoUsuarioId = (int) data.get(5); // coluna 5: TipoUsuario
+        if (data.get(2) != null) {
+            nascimento = data.get(2).toString(); // coluna 3: Nascimento
+        } else {
+            nascimento = null;
+        }
+        cpf = (String) data.get(3); // coluna 4: CPF
+        senha = (String) data.get(4); // coluna 5: Senha
+        endereco = (String) data.get(5); // coluna 6: Endereço
+        tipoUsuarioId = (int) data.get(6); // coluna 7: TipoUsuario
+        if (data.get(7) != null) {
+            convenioId = (int) data.get(7); // coluna 8: Convenios
+        } else {
+            convenioId = 0;
+        }
 
         return this;
     }
@@ -114,10 +150,13 @@ public class Usuario extends DataAccessObject {
 
         cp.setId(getId());
         cp.setNome(getNome());
+        cp.setNascimento(getNascimento());
         cp.senha = getSenha();
         cp.setCpf(getCpf());
         cp.setEndereco(getEndereco());
         cp.setTipoUsuarioId(getTipoUsuarioId());
+        cp.setNascimento(getNascimento());
+        cp.setConvenioId(getConvenioId());
 
         cp.setNovelEntity(false); // copiou um existente
 
@@ -140,6 +179,6 @@ public class Usuario extends DataAccessObject {
 
     @Override
     public String toString() {
-        return "(" + getId() + ", " + getNome() + ", " + getCpf() + ", " + getEndereco() + ", " + getSenha() + ", tipoUsuarioId=" + getTipoUsuarioId() + ")";
+        return "(" + getId() + ", " + getNome() + ", " + getNascimento() + ", " + getCpf() + ", " + getSenha() + getEndereco() + ", tipoUsuarioId=" + getTipoUsuarioId() + ", ConvenioId=" + getConvenioId() + ")";
     }
 }

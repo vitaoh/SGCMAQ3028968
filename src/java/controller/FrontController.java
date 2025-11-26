@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import logtrack.ExceptionLogTrack;
+import model.Convenio;
+import model.Exame;
 import model.TipoUsuario;
 import model.Usuario;
 
@@ -30,6 +32,14 @@ public class FrontController extends HttpServlet {
 
                 case "usuario":
                     doGetUsuario(request, response);
+                    break;
+
+                case "convenio":
+                    doGetConvenio(request, response);
+                    break;
+
+                case "exame":
+                    doGetExame(request, response);
                     break;
 
                 case "logout":
@@ -63,10 +73,18 @@ public class FrontController extends HttpServlet {
                     doPostUsuario(request, response);
                     break;
 
+                case "convenio":
+                    doPostConvenio(request, response);
+                    break;
+
+                case "exame":
+                    doPostExame(request, response);
+                    break;
+
                 case "login":
                     doPostLogin(request, response);
                     break;
-                    
+
                 default:
                     doDefault(request, response);
             }
@@ -103,6 +121,36 @@ public class FrontController extends HttpServlet {
         }
 
         response.sendRedirect(request.getContextPath() + "/home/app/adm/usuario.jsp");
+    }
+
+    private void doGetConvenio(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        String action = request.getParameter("action");
+        if (action != null && action.equals("delete")) {
+            int id = Integer.valueOf(request.getParameter("id"));
+
+            Convenio cv = new Convenio();
+            cv.setId(id);
+
+            cv.delete();
+        }
+
+        response.sendRedirect(request.getContextPath() + "/home/app/adm/convenio.jsp");
+    }
+
+    private void doGetExame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        String action = request.getParameter("action");
+        if (action != null && action.equals("delete")) {
+            int id = Integer.valueOf(request.getParameter("id"));
+
+            Exame ex = new Exame();
+            ex.setId(id);
+
+            ex.delete();
+        }
+
+        response.sendRedirect(request.getContextPath() + "/home/app/atm/exame.jsp");
     }
 
     private void doGetLogout(HttpServletRequest request, HttpServletResponse response)
@@ -166,10 +214,12 @@ public class FrontController extends HttpServlet {
 
         int id = Integer.valueOf(request.getParameter("id"));
         String nome = request.getParameter("nome");
+        String nascimento = request.getParameter("nascimento");
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
         String endereco = request.getParameter("endereco");
         int tipoUsuarioId = Integer.valueOf(request.getParameter("tipoUsuario"));
+        String convenioId = request.getParameter("convenio");
 
         // Java Bean
         Usuario us = new Usuario();
@@ -183,12 +233,80 @@ public class FrontController extends HttpServlet {
         us.setNome(nome);
         us.setSenha(senha);
         us.setCpf(cpf);
+        if (nascimento.equals("")) {
+            us.setNascimento(null);
+        } else {
+            us.setNascimento(nascimento);
+        }
         us.setEndereco(endereco);
         us.setTipoUsuarioId(tipoUsuarioId);
+        if (convenioId.equals("")) {
+            us.setConvenioId(0);
+        } else {
+            us.setConvenioId(Integer.parseInt(convenioId));
+        }
 
         us.save();
 
         response.sendRedirect(request.getContextPath() + "/home/app/adm/usuario.jsp");
+    }
+
+    private void doPostConvenio(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+
+        String action = request.getParameter("action");
+
+        int id = Integer.valueOf(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String cnpj = request.getParameter("cnpj");
+        String telefone = request.getParameter("telefone");
+        float valor = Float.parseFloat(request.getParameter("valor"));
+
+        // Java Bean
+        Convenio cv = new Convenio();
+
+        cv.setId(id); // chave primária
+
+        if (action.equals("update")) {
+            cv.load();
+        }
+
+        cv.setNome(nome);
+        cv.setCnpj(cnpj);
+        cv.setTelefone(telefone);
+        cv.setValor(valor);
+
+        cv.save();
+
+        response.sendRedirect(request.getContextPath() + "/home/app/adm/convenio.jsp");
+    }
+
+    private void doPostExame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+
+        String action = request.getParameter("action");
+
+        int id = Integer.valueOf(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String descricao = request.getParameter("descricao");
+        float valor = Float.parseFloat(request.getParameter("valor"));
+
+        // Java Bean
+        Exame ex = new Exame();
+
+        ex.setId(id); // chave primária
+
+        if (action.equals("update")) {
+            ex.load();
+        }
+
+        ex.setNome(nome);
+        ex.setDescricao(descricao);
+        ex.setValor(valor);
+
+        ex.save();
+
+        response.sendRedirect(request.getContextPath() + "/home/app/atm/exame.jsp");
     }
 
     private void doPostLogin(HttpServletRequest request, HttpServletResponse response)

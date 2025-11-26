@@ -23,6 +23,15 @@
             <li>
                 <a href="${pageContext.request.contextPath}/home/app/adm/usuario.jsp">Usuários</a>
             </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/home/app/adm/convenio.jsp">Convenios</a>
+            </li>
+        <% } %>
+        
+        <% if (tipoUsuarioLogado.getModuloAtendimento().equals("S")) { %>
+            <li>
+                <a href="${pageContext.request.contextPath}/home/app/atm/exame.jsp">Exames</a>
+            </li>
         <% } %>
 
         <li>
