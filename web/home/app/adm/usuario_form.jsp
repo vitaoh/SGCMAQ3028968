@@ -59,7 +59,8 @@
                 <input type="button"
                        id="buscar_por_cep"
                        name="buscar_por_cep"
-                       value="Buscar endereço">
+                       value="Buscar endereço"
+                       onclick= "buscar_endereco_cep()" >
                 <br>
 
                 <label for="endereco">Endereço:</label>
@@ -110,5 +111,45 @@
     <li>
         <a href="${pageContext.request.contextPath}/home/app/adm/usuario.jsp" class="centralizado">Voltar</a>
     </li>
+
+    <script>
+        function buscar_endereco_cep() {
+
+            const xhr = new XMLHttpRequest();
+            const regex = /^\d{5}-\d{3}$/;
+            var cep = document.getElementById("cep").value;
+
+            if (cep !== "") {
+                if (regex.test(cep)) {
+
+                    var url = "https://viacep.com.br/ws/" + cep.replace("-", "") + "/json/";
+
+                    xhr.open("GET", url);
+                    xhr.send();
+
+                    xhr.onreadystatechange = function () {
+
+                        if ((xhr.readyState === 4) && (xhr.status === 200)) {
+                            var json = JSON.parse(xhr.responseText);
+                            console.log(json);
+
+                            var endereco = json["logradouro"] + ", " + json["bairro"] + ", " + json["localidade"] + ", " + json["estado"] + "-" + json["uf"] + ", " + json["cep"] + ".";
+
+                            document.getElementById("endereco").innerHTML = endereco;
+                            document.getElementById("cep").value = "";
+                        }
+
+                    };
+
+                } else {
+                    alert("CEP deve estar no formato DDDDD-DDD");
+                    document.getElementById("cep").value = "";
+                }
+
+            }
+
+        }
+    </script>
+
 </body>
 </html>

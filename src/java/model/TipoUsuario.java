@@ -1,14 +1,20 @@
 package model;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import model.framework.DataAccessObject;
 
 public class TipoUsuario extends DataAccessObject {
 
+    @Expose
     private int id;
+    @Expose
     private String nome;
+    @Expose
     private String moduloAdministrativo;
+    @Expose
     private String moduloAgendamento;
+    @Expose
     private String moduloAtendimento;
 
     public TipoUsuario() {
